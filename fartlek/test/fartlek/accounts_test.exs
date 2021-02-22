@@ -6,8 +6,16 @@ defmodule Fartlek.AccountsTest do
   describe "users" do
     alias Fartlek.Accounts.User
 
-    @valid_attrs %{display_name: "some display_name", email: "some email", encrypted_password: "some encrypted_password"}
-    @update_attrs %{display_name: "some updated display_name", email: "some updated email", encrypted_password: "some updated encrypted_password"}
+    @valid_attrs %{
+      display_name: "some display_name",
+      email: "some email",
+      encrypted_password: "some encrypted_password"
+    }
+    @update_attrs %{
+      display_name: "some updated display_name",
+      email: "some updated email",
+      encrypted_password: "some updated encrypted_password"
+    }
     @invalid_attrs %{display_name: nil, email: nil, encrypted_password: nil}
 
     def user_fixture(attrs \\ %{}) do
