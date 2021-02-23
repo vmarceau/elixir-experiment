@@ -27,7 +27,7 @@ defmodule Fartlek.Accounts.User do
   defp put_hashed_password(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
-        put_change(changeset, :encrypted_password, Comeonin.Bcrypt.hashpwsalt(password))
+        put_change(changeset, :encrypted_password, Bcrypt.hash_pwd_salt(password))
 
       _ ->
         changeset

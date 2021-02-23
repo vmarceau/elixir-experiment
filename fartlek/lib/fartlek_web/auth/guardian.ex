@@ -27,7 +27,7 @@ defmodule FartlekWeb.Auth.Guardian do
   end
 
   defp validate_password(password, encrypted_password) do
-    Comeonin.Bcrypt.checkpw(password, encrypted_password)
+    Bcrypt.verify_pass(password, encrypted_password)
   end
 
   defp create_token(user) do

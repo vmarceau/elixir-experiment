@@ -3,7 +3,7 @@ defmodule FartlekWeb.UserController do
 
   alias Fartlek.Accounts
   alias Fartlek.Accounts.User
-  alias FartlekApiWeb.Auth.Guardian
+  alias FartlekWeb.Auth.Guardian
 
   action_fallback FartlekWeb.FallbackController
 
