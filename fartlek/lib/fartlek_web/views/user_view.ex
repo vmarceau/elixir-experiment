@@ -10,10 +10,17 @@ defmodule FartlekWeb.UserView do
     %{data: render_one(user, UserView, "user.json")}
   end
 
-  def render("user.json", %{user: user, token: token}) do
+  def render("user_auth.json", %{user: user, token: token}) do
     %{
       email: user.email,
       token: token
+    }
+  end
+
+  def render("user.json", %{user: user}) do
+    %{
+      email: user.email,
+      display_name: user.display_name
     }
   end
 end
