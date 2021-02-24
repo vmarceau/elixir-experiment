@@ -9,8 +9,6 @@ defmodule Fartlek.Application do
     children = [
       # Start the Ecto repository
       Fartlek.Repo,
-      # Start the Telemetry supervisor
-      FartlekWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Fartlek.PubSub},
       # Start the Endpoint (http/https)
