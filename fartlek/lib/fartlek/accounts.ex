@@ -2,6 +2,7 @@ defmodule Fartlek.Accounts do
   import Ecto.Query, warn: false
   alias Fartlek.Repo
   alias Fartlek.Accounts.User
+
   def get_user!(id), do: Repo.get!(User, id)
 
   def get_by_email(email) do
