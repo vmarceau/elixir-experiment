@@ -12,7 +12,7 @@ defmodule FartlekWeb.UserController do
          {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
       conn
       |> put_status(:created)
-      |> render("user_auth.json", %{user: user, token: token})
+      |> render("token.json", %{user: user, token: token})
     end
   end
 

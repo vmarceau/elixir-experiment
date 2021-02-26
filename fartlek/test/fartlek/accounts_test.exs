@@ -8,13 +8,8 @@ defmodule Fartlek.AccountsTest do
 
     @valid_attrs %{
       display_name: "some display_name",
-      email: "some email",
-      encrypted_password: "some encrypted_password"
-    }
-    @update_attrs %{
-      display_name: "some updated display_name",
-      email: "some updated email",
-      encrypted_password: "some updated encrypted_password"
+      email: "original@test.com",
+      password: "some password"
     }
     @invalid_attrs %{display_name: nil, email: nil, encrypted_password: nil}
 
@@ -27,50 +22,26 @@ defmodule Fartlek.AccountsTest do
       user
     end
 
-    test "list_users/0 returns all users" do
-      user = user_fixture()
-      assert Accounts.list_users() == [user]
+    test "get_user!/1 returns the user with given id" do
+      expected_user = user_fixture()
+      actual_user = Accounts.get_user!(expected_user.id)
+      assert %{actual_user | password: nil} == %{expected_user | password: nil}
     end
 
-    test "get_user!/1 returns the user with given id" do
-      user = user_fixture()
-      assert Accounts.get_user!(user.id) == user
+    test "get_user_by_email!/1 returns the user with given email" do
+      expected_user = user_fixture()
+      {:ok, actual_user} = Accounts.get_by_email(expected_user.email)
+      assert %{actual_user | password: nil} == %{expected_user | password: nil}
     end
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
       assert user.display_name == "some display_name"
-      assert user.email == "some email"
-      assert user.encrypted_password == "some encrypted_password"
+      assert user.email == "original@test.com"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Accounts.create_user(@invalid_attrs)
-    end
-
-    test "update_user/2 with valid data updates the user" do
-      user = user_fixture()
-      assert {:ok, %User{} = user} = Accounts.update_user(user, @update_attrs)
-      assert user.display_name == "some updated display_name"
-      assert user.email == "some updated email"
-      assert user.encrypted_password == "some updated encrypted_password"
-    end
-
-    test "update_user/2 with invalid data returns error changeset" do
-      user = user_fixture()
-      assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
-      assert user == Accounts.get_user!(user.id)
-    end
-
-    test "delete_user/1 deletes the user" do
-      user = user_fixture()
-      assert {:ok, %User{}} = Accounts.delete_user(user)
-      assert_raise Ecto.NoResultsError, fn -> Accounts.get_user!(user.id) end
-    end
-
-    test "change_user/1 returns a user changeset" do
-      user = user_fixture()
-      assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
   end
 end

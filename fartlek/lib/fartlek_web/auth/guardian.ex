@@ -14,6 +14,7 @@ defmodule FartlekWeb.Auth.Guardian do
     {:ok, resource}
   end
 
+  @spec current_user(Plug.Conn.t()) :: any
   def current_user(conn) do
     Guardian.Plug.current_resource(conn)
   end

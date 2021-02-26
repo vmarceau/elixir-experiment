@@ -28,3 +28,4 @@ fartlek-*.tar
 /priv/static/
 
 config/*.secret.exs
+env.sh
