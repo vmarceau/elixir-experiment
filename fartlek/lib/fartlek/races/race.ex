@@ -10,6 +10,8 @@ defmodule Fartlek.Races.Race do
     field :name, :string
     field :total_ascent, :float
 
+    has_many :results, Fartlek.Results.Result
+
     timestamps()
   end
 

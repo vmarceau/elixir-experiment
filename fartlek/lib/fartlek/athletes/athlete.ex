@@ -10,6 +10,8 @@ defmodule Fartlek.Athletes.Athlete do
     field :first_name, :string
     field :last_name, :string
 
+    has_many :results, Fartlek.Results.Result
+
     timestamps()
   end
 

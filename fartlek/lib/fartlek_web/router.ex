@@ -21,5 +21,6 @@ defmodule FartlekWeb.Router do
     get "/users/me", UserController, :me
     resources "/races", RaceController, except: [:new, :edit]
     resources "/athletes", AthleteController, except: [:new, :edit]
+    resources "/results", ResultController, except: [:new, :edit]
   end
 end
