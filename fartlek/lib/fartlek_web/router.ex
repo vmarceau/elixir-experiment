@@ -20,7 +20,9 @@ defmodule FartlekWeb.Router do
     pipe_through [:api, :auth]
     get "/users/me", UserController, :me
     resources "/races", RaceController, except: [:new, :edit]
+    get "/races/:id/results", RaceController, :show_results
     resources "/athletes", AthleteController, except: [:new, :edit]
+    get "/athletes/:id/results", AthleteController, :get_athlete_results
     resources "/results", ResultController, except: [:new, :edit]
   end
 end

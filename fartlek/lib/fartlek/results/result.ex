@@ -5,6 +5,7 @@ defmodule Fartlek.Results.Result do
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "results" do
+    field :year, :integer
     field :athlete_id, Ecto.UUID
     field :race_id, Ecto.UUID
     field :status, Ecto.Enum, values: [:ok, :dnf, :dns], default: :ok
@@ -19,9 +20,9 @@ defmodule Fartlek.Results.Result do
   @doc false
   def changeset(result, attrs) do
     result
-    |> cast(attrs, [:race_id, :athlete_id, :total_time, :status])
-    |> validate_required([:race_id, :athlete_id, :total_time])
-    |> unique_constraint([:race_id, :athlete_id], [name: "results_athlete_id_race_id_index"])
+    |> cast(attrs, [:year, :race_id, :athlete_id, :total_time, :status])
+    |> validate_required([:year, :race_id, :athlete_id, :total_time])
+    |> unique_constraint([:year, :race_id, :athlete_id], [name: "results_year_athlete_id_race_id_index"])
     |> foreign_key_constraint(:athlete_id)
     |> foreign_key_constraint(:race_id)
   end
