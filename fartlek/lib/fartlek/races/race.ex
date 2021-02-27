@@ -4,13 +4,13 @@ defmodule Fartlek.Races.Race do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  schema "races" do
+  schema "race" do
     field :country, :string
     field :distance, :float
     field :name, :string
     field :total_ascent, :float
 
-    has_many :results, Fartlek.Results.Result
+    has_many :result, Fartlek.Results.Result
 
     timestamps()
   end

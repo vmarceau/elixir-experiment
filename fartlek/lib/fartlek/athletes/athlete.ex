@@ -4,13 +4,13 @@ defmodule Fartlek.Athletes.Athlete do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  schema "athletes" do
+  schema "athlete" do
     field :country, :string
     field :date_of_birth, :date
     field :first_name, :string
     field :last_name, :string
 
-    has_many :results, Fartlek.Results.Result
+    has_many :result, Fartlek.Results.Result
 
     timestamps()
   end

@@ -4,7 +4,7 @@ defmodule Fartlek.Accounts.User do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  schema "users" do
+  schema "user" do
     field :display_name, :string
     field :email, :string
     field :encrypted_password, :string

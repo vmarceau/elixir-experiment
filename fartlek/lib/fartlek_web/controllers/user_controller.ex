@@ -29,6 +29,6 @@ defmodule FartlekWeb.UserController do
 
     conn
     |> put_status(:ok)
-    |> render("user.json", %{user: user})
+    |> render("show.json", %{user: user})
   end
 end
