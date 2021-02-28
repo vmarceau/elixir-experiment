@@ -9,8 +9,8 @@ defmodule Fartlek.Results.Result do
     field :status, Ecto.Enum, values: [:ok, :dnf, :dns], default: :ok
     field :total_time, :time
 
-    belongs_to :race, Fartlek.Races.Race
-    belongs_to :athlete, Fartlek.Athletes.Athlete
+    belongs_to :race, Fartlek.Races.Race, foreign_key: :race_id, type: Ecto.UUID
+    belongs_to :athlete, Fartlek.Athletes.Athlete, foreign_key: :athlete_id, type: Ecto.UUID
 
     timestamps()
   end
