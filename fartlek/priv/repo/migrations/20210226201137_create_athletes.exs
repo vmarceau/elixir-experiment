@@ -11,6 +11,5 @@ defmodule Fartlek.Repo.Migrations.CreateAthletes do
 
       timestamps()
     end
-
   end
 end

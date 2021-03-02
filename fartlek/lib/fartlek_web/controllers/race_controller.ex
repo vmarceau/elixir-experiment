@@ -27,10 +27,12 @@ defmodule FartlekWeb.RaceController do
   end
 
   def show_results(conn, %{"id" => id}) do
-    year = case conn.query_params do
-      %{"year" => year} -> Integer.parse(year) |> elem(0)
-      _ -> nil
-    end
+    year =
+      case conn.query_params do
+        %{"year" => year} -> Integer.parse(year) |> elem(0)
+        _ -> nil
+      end
+
     race = Races.get_race_results!(id, year)
     render(conn, "show_results.json", race: race)
   end

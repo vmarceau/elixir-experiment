@@ -9,19 +9,19 @@ defmodule Fartlek.Results do
 
   def get_result!(id), do: Repo.get!(Result, id)
 
-    def create_result(attrs \\ %{}) do
+  def create_result(attrs \\ %{}) do
     %Result{}
     |> Result.changeset(attrs)
     |> Repo.insert()
   end
 
-    def update_result(%Result{} = result, attrs) do
+  def update_result(%Result{} = result, attrs) do
     result
     |> Result.changeset(attrs)
     |> Repo.update()
   end
 
-   def delete_result(%Result{} = result) do
+  def delete_result(%Result{} = result) do
     Repo.delete(result)
   end
 

@@ -25,6 +25,17 @@ defmodule FartlekWeb.AthleteController do
     render(conn, "show.json", athlete: athlete)
   end
 
+  def show_results(conn, %{"id" => id}) do
+    year =
+      case conn.query_params do
+        %{"year" => year} -> Integer.parse(year) |> elem(0)
+        _ -> nil
+      end
+
+    athlete = Athletes.get_athlete_results!(id, year)
+    render(conn, "show_results.json", athlete: athlete)
+  end
+
   def update(conn, %{"id" => id, "athlete" => athlete_params}) do
     athlete = Athletes.get_athlete!(id)
 

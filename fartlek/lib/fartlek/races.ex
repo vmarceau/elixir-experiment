@@ -10,15 +10,27 @@ defmodule Fartlek.Races do
 
   def get_race!(id), do: Repo.get!(Race, id)
 
-
   def get_race_results!(id, nil) do
     Repo.get!(Race, id)
-    |> Repo.preload([results: from(r in Result, order_by: [asc: r.year, asc: fragment("? NULLS LAST", r.time)])])
+    |> Repo.preload(
+      results:
+        from(r in Result,
+          preload: :athlete,
+          order_by: [asc: r.year, asc: fragment("? NULLS LAST", r.total_time)]
+        )
+    )
   end
 
   def get_race_results!(id, year) do
     Repo.get!(Race, id)
-    |> Repo.preload([results: from(r in Result, where: r.year == ^year, order_by: [asc: fragment("? NULLS LAST", r.time)])])
+    |> Repo.preload(
+      results:
+        from(r in Result,
+          preload: :athlete,
+          where: r.year == ^year,
+          order_by: [asc: fragment("? NULLS LAST", r.total_time)]
+        )
+    )
   end
 
   def create_race(attrs \\ %{}) do
